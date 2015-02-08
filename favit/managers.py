@@ -33,7 +33,7 @@ class FavoriteManager(models.Manager):
             Favorite.objects.for_user(user, model="music.song")
         """
 
-        qs = self.get_query_set().filter(user=user)
+        qs = self.get_queryset().filter(user=user)
 
         if model:
             if isinstance(model, basestring):
