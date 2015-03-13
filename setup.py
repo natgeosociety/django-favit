@@ -6,16 +6,16 @@ from setuptools import setup, find_packages
 README = open('README.md').readlines()
 
 setup(
-    name='django-favit',
+    name='django-favs-sc',
     version='0.2.4',
     packages=find_packages(),
     include_package_data=True,
     license='MIT License',
     description=README[2].rstrip('\n'),
     long_description=''.join(README),
-    url='https://github.com/streema/django-favit',
-    author='Streema Team',
-    author_email='devel@streema.com',
+    url='https://github.com/SpencerCooley/django-favit',
+    author='Spencer Cooley',
+    author_email='contact@spencercooley.com',
     classifiers=[
         'Environment :: Web Environment',
         'Framework :: Django',
@@ -28,4 +28,5 @@ setup(
         'Topic :: Internet :: WWW/HTTP',
         'Topic :: Internet :: WWW/HTTP :: Dynamic Content',
         ],
+    install_requires=['simplejson']
     )
