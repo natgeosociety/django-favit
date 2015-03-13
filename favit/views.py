@@ -36,7 +36,7 @@ def add_or_remove(request):
 
     return HttpResponse(
         simplejson.dumps(response, ensure_ascii=False),
-        mimetype='application/json'
+        content_type='application/json'
     )
 
 
@@ -63,5 +63,5 @@ def remove(request):
 
     return HttpResponse(
         simplejson.dumps(response, ensure_ascii=False),
-        mimetype='application/json'
+        content_type='application/json'
     )
