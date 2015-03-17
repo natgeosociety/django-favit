@@ -5,10 +5,10 @@ from django.db.models import get_model
 
 
 def _get_content_type_and_obj(obj, model=None):
-    if isinstance(model, basestring):
+    if isinstance(model, str):
         model = get_model(*model.split("."))
 
-    if isinstance(obj, (int, long)):
+    if isinstance(obj, (int,)):
         obj = model.objects.get(pk=obj)
 
     return ContentType.objects.get_for_model(type(obj)), obj
@@ -36,7 +36,7 @@ class FavoriteManager(models.Manager):
         qs = self.get_query_set().filter(user=user)
 
         if model:
-            if isinstance(model, basestring):
+            if isinstance(model, str):
                 model = get_model(*model.split("."))
 
             content_type = ContentType.objects.get_for_model(model)
@@ -57,7 +57,7 @@ class FavoriteManager(models.Manager):
         """
 
         # if model is an app_label.model string make it a Model class
-        if isinstance(model, basestring):
+        if isinstance(model, str):
             model = get_model(*model.split("."))
 
         content_type = ContentType.objects.get_for_model(model)
