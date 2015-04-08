@@ -6,14 +6,14 @@ from setuptools import setup, find_packages
 README = open('README.md').readlines()
 
 setup(
-    name='django-favs-sc',
+    name='django-favit',
     version='0.2.5',
     packages=find_packages(),
     include_package_data=True,
     license='MIT License',
     description=README[2].rstrip('\n'),
     long_description=''.join(README),
-    url='https://github.com/SpencerCooley/django-favit',
+    url='https://github.com/recklessromeo/django-favit',
     author='Spencer Cooley',
     author_email='contact@spencercooley.com',
     classifiers=[
@@ -28,5 +28,4 @@ setup(
         'Topic :: Internet :: WWW/HTTP',
         'Topic :: Internet :: WWW/HTTP :: Dynamic Content',
         ],
-    install_requires=['simplejson']
     )
