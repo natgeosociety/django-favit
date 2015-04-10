@@ -35,7 +35,7 @@ def add_or_remove(request):
     }
 
     return HttpResponse(
-        simplejson.dumps(response, ensure_ascii=False),
+        json.dumps(response, ensure_ascii=False),
         content_type='application/json'
     )
 
@@ -54,7 +54,7 @@ def remove(request):
     except (KeyError, ValueError):
         return HttpResponseBadRequest()
 
-    Favorite.objects.get_favorite(user, obj_id, model=app_model).delete()
+    Favorite.objects.get_favorite(simuser, obj_id, model=app_model).delete()
     status = 'deleted'
 
     response = {
@@ -62,6 +62,6 @@ def remove(request):
     }
 
     return HttpResponse(
-        simplejson.dumps(response, ensure_ascii=False),
+        json.dumps(response, ensure_ascii=False),
         content_type='application/json'
     )
