@@ -54,7 +54,7 @@ def remove(request):
     except (KeyError, ValueError):
         return HttpResponseBadRequest()
 
-    Favorite.objects.get_favorite(simuser, obj_id, model=app_model).delete()
+    Favorite.objects.get_favorite(user, obj_id, model=app_model).delete()
     status = 'deleted'
 
     response = {
