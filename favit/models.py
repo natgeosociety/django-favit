@@ -27,5 +27,5 @@ class Favorite(models.Model):
         verbose_name = _("favorite")
         verbose_name_plural = _("favorites")
 
-    def __unicode__(self):
-        return u"{} favorited {}".format(self.user, self.target)
+    def __str__(self):
+        return "{} favorited {}".format(self.user, self.target)

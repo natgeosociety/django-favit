@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse, HttpResponseNotAllowed, HttpResponseBadRequest
+from django.http import HttpResponse, HttpResponseNotAllowed, HttpResponseBadRequest, JsonResponse
 import json
 
 from .models import Favorite
@@ -34,10 +34,7 @@ def add_or_remove(request):
         'fav_count': Favorite.objects.for_object(obj_id, app_model).count()
     }
 
-    return HttpResponse(
-        json.dumps(response, ensure_ascii=False),
-        content_type='application/json'
-    )
+    return JsonResponse(response)
 
 
 @login_required
@@ -61,7 +58,4 @@ def remove(request):
         'status': status,
     }
 
-    return HttpResponse(
-        json.dumps(response, ensure_ascii=False),
-        content_type='application/json'
-    )
+    return JsonResponse(response)
