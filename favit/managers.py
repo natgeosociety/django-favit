@@ -1,14 +1,21 @@
 # -*- coding: utf-8 -*-
+from __future__ import unicode_literals
+
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
-from django.db.models import get_model
-
+from django.utils import six
+try:
+    from django.apps import apps
+    get_model = apps.get_model
+except ImportError:
+    # Support django < 1.8
+    from django.db.models import get_model
 
 def _get_content_type_and_obj(obj, model=None):
-    if isinstance(model, str):
+    if isinstance(model, six.string_types):
         model = get_model(*model.split("."))
 
-    if isinstance(obj, (int,)):
+    if isinstance(obj, six.integer_types):
         obj = model.objects.get(pk=obj)
 
     return ContentType.objects.get_for_model(type(obj)), obj
@@ -36,7 +43,7 @@ class FavoriteManager(models.Manager):
         qs = self.get_queryset().filter(user=user)
 
         if model:
-            if isinstance(model, str):
+            if isinstance(model, six.string_types):
                 model = get_model(*model.split("."))
 
             content_type = ContentType.objects.get_for_model(model)
@@ -57,7 +64,7 @@ class FavoriteManager(models.Manager):
         """
 
         # if model is an app_label.model string make it a Model class
-        if isinstance(model, str):
+        if isinstance(model, six.string_types):
             model = get_model(*model.split("."))
 
         content_type = ContentType.objects.get_for_model(model)

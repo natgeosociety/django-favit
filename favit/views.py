@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
+from __future__ import unicode_literals
+
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse, HttpResponseNotAllowed, HttpResponseBadRequest, JsonResponse
-import json
+from django.http import HttpResponseNotAllowed, HttpResponseBadRequest, JsonResponse
 
 from .models import Favorite
 

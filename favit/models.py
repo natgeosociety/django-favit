@@ -1,13 +1,16 @@
 # -*- coding: utf-8 -*-
+from __future__ import unicode_literals
+
 from django.contrib.contenttypes import generic
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
 from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
+from django.utils.encoding import python_2_unicode_compatible
 
 from .managers import FavoriteManager
 
-
+@python_2_unicode_compatible
 class Favorite(models.Model):
     """
     """
