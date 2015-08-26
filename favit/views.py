@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseNotAllowed, HttpResponseBadRequest
-from django.utils import simplejson
+import json as simplejson
 
 from .models import Favorite
 
