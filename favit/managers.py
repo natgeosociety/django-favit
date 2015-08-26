@@ -18,6 +18,10 @@ class FavoriteManager(models.Manager):
     """
     A Manager for Favorite objects
     """
+    from django import VERSION
+    if VERSION > (1,8):
+        def get_query_set(self):
+            return self.get_queryset()
 
     def for_user(self, user, model=None):
         """
