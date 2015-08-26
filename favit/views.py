@@ -63,5 +63,5 @@ def remove(request):
 
     return HttpResponse(
         simplejson.dumps(response, ensure_ascii=False),
-        mimetype='application/json'
+        content_type='application/json'
     )
