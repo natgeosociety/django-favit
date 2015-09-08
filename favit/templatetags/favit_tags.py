@@ -10,7 +10,7 @@ register = template.Library()
 
 
 @register.simple_tag(takes_context=True)
-def favorite_button(context, target):
+def favorite_button(context, target, count=True):
     user = context['request'].user
 
     # do nothing when user isn't authenticated
@@ -30,6 +30,7 @@ def favorite_button(context, target):
             'target_model': target_model,
             'target_object_id': target.id,
             'undo': undo,
+            'count': count,
             'fav_count': Favorite.objects.for_object(target).count()
         }
     )
