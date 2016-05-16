@@ -6,7 +6,14 @@ from django.db.models import get_model
 
 def _get_content_type_and_obj(obj, model=None):
     if isinstance(model, basestring):
-        model = get_model(*model.split("."))
+        try:
+            # django >= 1.7
+            from django.apps import apps
+            model = apps.get_model(*model.split("."))
+        except:
+            # django < 1.7
+            model = get_model(*model.split("."))
+
 
     if isinstance(obj, (int, long)):
         obj = model.objects.get(pk=obj)
@@ -41,7 +48,13 @@ class FavoriteManager(models.Manager):
 
         if model:
             if isinstance(model, basestring):
-                model = get_model(*model.split("."))
+                try:
+                    # django >= 1.7
+                    from django.apps import apps
+                    model = apps.get_model(*model.split("."))
+                except:
+                    # django < 1.7
+                    model = get_model(*model.split("."))
 
             content_type = ContentType.objects.get_for_model(model)
             qs = qs.filter(target_content_type=content_type)
@@ -62,7 +75,13 @@ class FavoriteManager(models.Manager):
 
         # if model is an app_label.model string make it a Model class
         if isinstance(model, basestring):
-            model = get_model(*model.split("."))
+            try:
+                # django >= 1.7
+                from django.apps import apps
+                model = apps.get_model(*model.split("."))
+            except:
+                # django < 1.7
+                model = get_model(*model.split("."))
 
         content_type = ContentType.objects.get_for_model(model)
 
