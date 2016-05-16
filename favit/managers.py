@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
-from django.db.models import get_model
 
 
 def _get_content_type_and_obj(obj, model=None):
