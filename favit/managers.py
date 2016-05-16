@@ -14,7 +14,6 @@ def _get_content_type_and_obj(obj, model=None):
             from django.db.models import get_model
             model = get_model(*model.split("."))
 
-
     if isinstance(obj, (int, long)):
         obj = model.objects.get(pk=obj)
 
