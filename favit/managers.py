@@ -11,6 +11,7 @@ def _get_content_type_and_obj(obj, model=None):
             model = apps.get_model(*model.split("."))
         except:
             # django < 1.7
+            from django.db.models import get_model
             model = get_model(*model.split("."))
 
 
@@ -53,6 +54,7 @@ class FavoriteManager(models.Manager):
                     model = apps.get_model(*model.split("."))
                 except:
                     # django < 1.7
+                    from django.db.models import get_model
                     model = get_model(*model.split("."))
 
             content_type = ContentType.objects.get_for_model(model)
@@ -80,6 +82,7 @@ class FavoriteManager(models.Manager):
                 model = apps.get_model(*model.split("."))
             except:
                 # django < 1.7
+                from django.db.models import get_model
                 model = get_model(*model.split("."))
 
         content_type = ContentType.objects.get_for_model(model)
