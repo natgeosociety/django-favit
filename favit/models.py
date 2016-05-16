@@ -2,7 +2,6 @@
 from django import VERSION
 if VERSION > (1,8):
     from django.contrib.contenttypes.fields import GenericForeignKey
-
 else:
     from django.contrib.contenttypes.generic import GenericForeignKey
 
