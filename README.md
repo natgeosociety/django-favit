@@ -34,7 +34,7 @@ urlpatterns = patterns('',
 * Sync your database:
 
 ```
-python manage.py syncdb
+python manage.py migrate
 ```
 
 * Make sure you have jQuery ajax CSRF configuration right
@@ -72,10 +72,10 @@ See https://docs.djangoproject.com/en/1.7/ref/contrib/csrf/#ajax
 {% endwith %}
 ```
 
-* Favorite Button for an object `my_obj`:
+* Favorite Button for an object `my_obj` (optional param specified if show count, default True):
 
 ```python
-{% favorite_button my_obj %}
+{% favorite_button my_obj count=False %}
 ```
 
 
