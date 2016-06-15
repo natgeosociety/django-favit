@@ -11,9 +11,17 @@ except ImportError:
     # Support django < 1.8
     from django.db.models import get_model
 
+
 def _get_content_type_and_obj(obj, model=None):
-    if isinstance(model, six.string_types):
-        model = get_model(*model.split("."))
+    if isinstance(model, basestring):
+        try:
+            # django >= 1.7
+            from django.apps import apps
+            model = apps.get_model(*model.split("."))
+        except:
+            # django < 1.7
+            from django.db.models import get_model
+            model = get_model(*model.split("."))
 
     if isinstance(obj, six.integer_types):
         obj = model.objects.get(pk=obj)
@@ -25,6 +33,10 @@ class FavoriteManager(models.Manager):
     """
     A Manager for Favorite objects
     """
+    from django import VERSION
+    if VERSION > (1,8):
+        def get_query_set(self):
+            return self.get_queryset()
 
     def for_user(self, user, model=None):
         """
@@ -43,8 +55,15 @@ class FavoriteManager(models.Manager):
         qs = self.get_queryset().filter(user=user)
 
         if model:
-            if isinstance(model, six.string_types):
-                model = get_model(*model.split("."))
+            if isinstance(model, basestring):
+                try:
+                    # django >= 1.7
+                    from django.apps import apps
+                    model = apps.get_model(*model.split("."))
+                except:
+                    # django < 1.7
+                    from django.db.models import get_model
+                    model = get_model(*model.split("."))
 
             content_type = ContentType.objects.get_for_model(model)
             qs = qs.filter(target_content_type=content_type)
@@ -64,8 +83,15 @@ class FavoriteManager(models.Manager):
         """
 
         # if model is an app_label.model string make it a Model class
-        if isinstance(model, six.string_types):
-            model = get_model(*model.split("."))
+        if isinstance(model, basestring):
+            try:
+                # django >= 1.7
+                from django.apps import apps
+                model = apps.get_model(*model.split("."))
+            except:
+                # django < 1.7
+                from django.db.models import get_model
+                model = get_model(*model.split("."))
 
         content_type = ContentType.objects.get_for_model(model)
 

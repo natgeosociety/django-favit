@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from django import template
-from django.db.models import get_model
 from django.template.loader import render_to_string
 
 from ..models import Favorite
